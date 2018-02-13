@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>The Psychic Game!</title>
+    </head>
+
+    <body>
+
+        <div id="game">
+        <!-- Have output for user instruction-->
+            <h1>The Psychic Game</h1>
+            <p>Guess what letter I am thinking of</p>
+            <p>Wins:</p>
+            <p>Losses:</p>
+            <p>Guesses Left:</p>
+            <p>Your Guesses So Far:</p>
+        </div>
+<script type="text/javascript">
+
+//Creates an array that lists all options (entire alphabet)
+
+var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+//Global variables
+
+                var wins = 0;
+                var losses = 0;
+                var guessesLeft = 9;
+
+//array to hold user guesses
+
+                var guessesSoFar = [];
+
+//function setting userGuess as key pressed
+
+document.onkeyup = function(event) {
+
+    var userGuess = event.key;
+
+//function setting computerGuess to random selection of array letters
+
+var computerGuess = letters[Math.floor(Math.random()* letters.length)];
+
+ //if guess wrong. 
+ //check to make sure valid input i.e. letter not selected previously. 
+ //Does not recognize numbers.
+
+                if (guessesSoFar.indexOf(userGuess) < 0 && letters.indexOf(userGuess) >= 0) {
+		            guessesSoFar[guessesSoFar.length]=userGuess;
+		            guessesLeft--;
+                }
+//if guess right. Resets Game. 
+//Resets guessSoFar and computerGuess arrays. 
+//User Wins
+
+                if (userGuess === computerGuess) {
+                    wins++;
+                    guessesLeft = 9;
+                    guessesSoFar = [];
+                    computerGuess = letters[Math.floor(Math.random() * letters.length)];
+                } 
+
+//when out of guesses. Resets Game. 
+//Resets guessSoFar and computer Guess arrays 
+//User Loses.
+
+                if (guessesLeft === 0) {
+		            losses++;		     
+		            guessesLeft = 9;
+		            guessesSoFar = [];
+		            computerGuess = letters[Math.floor(Math.random() * letters.length)]
+                };	
+		
+// Displaying progress to HTML
+
+	var html = "<p><h1>The Psychic Game</h1></p>" + 
+        "<p>Guess what letter I'm thinking of</p>" + 
+        "<p>Wins: " + wins + "</p>" + 
+        "<p>Losses: " + losses + "</p>" + 
+        "<p>Guesses Left: " + guessesLeft + "</p>" + 
+        "<p>Your guesses so far: " + guessesSoFar + "</p>";
+
+// place html into the game ID in div
+
+	document.querySelector("#game").innerHTML = html
+}
+
+            </script>
+    </body>
+</html>
