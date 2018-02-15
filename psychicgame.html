@@ -43,16 +43,16 @@ document.onkeyup = function(event) {
 
 var computerGuess = letters[Math.floor(Math.random()* letters.length)];
 
- //if guess wrong. 
- //check to make sure valid input i.e. letter not selected previously. 
+ //if guess wrong.
+ //check to make sure valid input i.e. letter not selected previously.
  //Does not recognize numbers.
 
                 if (guessesSoFar.indexOf(userGuess) < 0 && letters.indexOf(userGuess) >= 0) {
 		            guessesSoFar[guessesSoFar.length]=userGuess;
 		            guessesLeft--;
                 }
-//if guess right. Resets Game. 
-//Resets guessSoFar and computerGuess arrays. 
+//if guess right. Resets Game.
+//Resets guessSoFar and computerGuess arrays.
 //User Wins
 
                 if (userGuess === computerGuess) {
@@ -60,26 +60,26 @@ var computerGuess = letters[Math.floor(Math.random()* letters.length)];
                     guessesLeft = 9;
                     guessesSoFar = [];
                     computerGuess = letters[Math.floor(Math.random() * letters.length)];
-                } 
+                }
 
-//when out of guesses. Resets Game. 
-//Resets guessSoFar and computer Guess arrays 
+//when out of guesses. Resets Game.
+//Resets guessSoFar and computer Guess arrays
 //User Loses.
 
                 if (guessesLeft === 0) {
-		            losses++;		     
+		            losses++;
 		            guessesLeft = 9;
 		            guessesSoFar = [];
 		            computerGuess = letters[Math.floor(Math.random() * letters.length)]
-                };	
-		
+                };
+
 // Displaying progress to HTML
 
-	var html = "<p><h1>The Psychic Game</h1></p>" + 
-        "<p>Guess what letter I'm thinking of</p>" + 
-        "<p>Wins: " + wins + "</p>" + 
-        "<p>Losses: " + losses + "</p>" + 
-        "<p>Guesses Left: " + guessesLeft + "</p>" + 
+	var html = "<p><h1>The Psychic Game</h1></p>" +
+        "<p>Guess what letter I'm thinking of</p>" +
+        "<p>Wins: " + wins + "</p>" +
+        "<p>Losses: " + losses + "</p>" +
+        "<p>Guesses Left: " + guessesLeft + "</p>" +
         "<p>Your guesses so far: " + guessesSoFar + "</p>";
 
 // place html into the game ID in div
